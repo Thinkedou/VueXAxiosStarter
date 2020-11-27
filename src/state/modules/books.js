@@ -1,7 +1,7 @@
-import axios from 'axios';
+import Service from '../../helpers/service';
+const NAMESPACE = 'books';
+let service = new Service(NAMESPACE);
 
-
-const ROOT_API_ENDPOINT = 'http://localhost:3000/'
 
 
 const state = {
@@ -22,7 +22,8 @@ const actions = {
 
     async fetchAllBooks ({ commit }) {
       try {
-          let allB = await axios.get(`${ROOT_API_ENDPOINT}books`);
+          // let allB = await axios.get(`${ROOT_API_ENDPOINT}books`);
+          let allB = await service.get(`/`);
           if(allB.status==200){
               commit('SET_ALL_BOOKS', allB.data )
           }
